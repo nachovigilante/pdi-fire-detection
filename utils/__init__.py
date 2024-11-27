@@ -6,16 +6,13 @@ from PIL import Image
 
 def load_image(image_path):
     image = Image.open(image_path)
-    # If the image is in color, convert it to grayscale
-    if len(np.array(image).shape) == 3:
-        image = image.convert("L")
     return np.array(image)
 
 
 def show_image(image):
     plt.xticks([])
     plt.yticks([])
-    plt.imshow(image, cmap=cm.gray, vmin=0, vmax=255)
+    plt.imshow(image)
 
 
 def show_images(images, titles=None):
