@@ -121,7 +121,7 @@ def test_rs_mask(img_path):
         img_paper1 = rgba2rgb(img_paper1)
     img_paper1 = util.img_as_ubyte(img_paper1)
 
-    img_lab1 = rgb2lab(img_paper1)
+    img_lab1 = rgba2rgb(img_paper1)
 
     lm1, am1, bm1 = statistical_ciel(img_lab1)
     r1_img1 = r1(img_lab1, lm1)

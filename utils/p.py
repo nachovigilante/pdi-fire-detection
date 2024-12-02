@@ -73,7 +73,7 @@ def print_ps(p1, p2, p3):
     )
 
     ax[0].set_xlabel("a")
-    ax[0].set_ylabel("l")
+    ax[0].set_ylabel("L")
     ax[0].invert_xaxis()
     ax[0].invert_yaxis()
 
