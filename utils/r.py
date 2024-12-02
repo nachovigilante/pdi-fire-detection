@@ -93,35 +93,35 @@ def test_rs():
     plt.show()
 
 
-def imprimir_rs_mask(imagen, r1, r2, r3, r4):
+def imprimir_rs_mask(imagen,r1,r2,r3,r4):
     and_img = np.logical_and(r1, r2)
     and_img = np.logical_and(and_img, r3)
     and_img = np.logical_and(and_img, r4)
-    times_img = np.zeros_like(imagen)
-    times_img[:, :, 0] = and_img * imagen[:, :, 0]
-    times_img[:, :, 1] = and_img * imagen[:, :, 1]
-    times_img[:, :, 2] = and_img * imagen[:, :, 2]
+    times_img=np.zeros_like(imagen)
+    times_img[:,:,0]=and_img*imagen[:,:,0]
+    times_img[:,:,1]=and_img*imagen[:,:,1]
+    times_img[:,:,2]=and_img*imagen[:,:,2]
 
     fig, axes = plt.subplots(1, 3, figsize=(8, 8))
     ax = axes.ravel()
     ax[0].imshow(imagen)
-    ax[0].axis("off")
+    ax[0].axis('off')
     ax[1].imshow(and_img, cmap=plt.cm.gray)
-    ax[1].axis("off")
+    ax[1].axis('off')
     ax[2].imshow(times_img)
-    ax[2].axis("off")
+    ax[2].axis('off')
 
 
 def test_rs_mask(img_path):
 
     img_paper1 = load_image(img_path)
-    _, _, ch = img_paper1.shape
+    _,_,ch=img_paper1.shape
 
-    if ch == 4:
-        img_paper1 = rgba2rgb(img_paper1)
-    img_paper1 = util.img_as_ubyte(img_paper1)
+    if ch==4:
+        img_paper1=rgba2rgb(img_paper1)
+    img_paper1=util.img_as_ubyte(img_paper1)
 
-    img_lab1 = rgb2lab(img_paper1)
+    img_lab1 = rgba2rgb(img_paper1)
 
     lm1, am1, bm1 = statistical_ciel(img_lab1)
     r1_img1 = r1(img_lab1, lm1)
@@ -129,4 +129,4 @@ def test_rs_mask(img_path):
     r3_img1 = r3(img_lab1, bm1)
     r4_img1 = r4(img_lab1)
 
-    imprimir_rs_mask(img_paper1, r1_img1, r2_img1, r3_img1, r4_img1)
+    imprimir_rs_mask(img_paper1,r1_img1,r2_img1,r3_img1,r4_img1)
