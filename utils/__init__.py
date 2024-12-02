@@ -41,11 +41,38 @@ def show_histograms(histogram_values, titles=None):
     plt.show()
 
 
-def threshold_image(image, threshold):
-    new_image = image.copy()
+def binarizar(imag, thres, index):
+    h, w, _ = imag.shape
+    img_res = np.zeros((h, w))
+    for i in range(h):
+        for j in range(w):
+            if imag[i, j, index] >= thres:
+                img_res[i, j] = 1
+    return img_res
 
-    for i in range(image.shape[0]):
-        for j in range(image.shape[1]):
-            new_image[i, j] = 0 if image[i, j] < threshold else 255
 
-    return new_image
+def statistical_ciel(img_lab):
+    # h, w, _ = img_lab.shape
+    # n = h * w
+    # ln = 0
+    # an = 0
+    # bn = 0
+    # for i in range(h):
+    #    for j in range(w):
+    #        ln += img_lab[i, j, 0]
+    #        an += img_lab[i, j, 1]
+    #        bn += img_lab[i, j, 2]
+    #
+    # ln = ln / n
+    # an = an / n
+    # bn = bn / n
+    #
+    # return (ln, an, bn)
+    # o devolver
+    return (
+        np.mean(img_lab[:, :, 0]),
+        np.mean(img_lab[:, :, 1]),
+        np.mean(img_lab[:, :, 2]),
+    )
+    # o quizás funciona
+    # return np.mean(img, axis=2)
